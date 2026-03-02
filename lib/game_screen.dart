@@ -256,75 +256,84 @@ class _GameScreenState extends State<GameScreen> {
                   Opacity(
                     opacity: _showLevelUp ? 0.3 : 1.0,
                     child: Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 800), // Optional: keeps grid from becoming too wide on ultra-wide screens
-                        child: GridView.builder(
-                          shrinkWrap: true, // Grid fits content
-                          physics: const NeverScrollableScrollPhysics(), // Prevent internal scrolling
-                          padding: const EdgeInsets.all(16),
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 6,
-                            mainAxisSpacing: 12, // Increased spacing for large screens
-                            crossAxisSpacing: 12,
-                            childAspectRatio: 1.0,
-                          ),
-                          itemCount: 36,
-                          itemBuilder: (context, index) {
-                            final tile = _cells[index];
-                            return GestureDetector(
-                              onTap: () => _handleCellClick(index),
-                              child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 300),
-                                decoration: BoxDecoration(
-                                  color: tile.isHighlighted 
-                                      ? Colors.orangeAccent 
-                                      : Colors.blue.withOpacity(0.7),
-                                  borderRadius: BorderRadius.circular(8),
-                                  // Borderless design maintained [cite: 2026-02-04]
-                                ),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          // Calculate the maximum possible size for a square grid
+                          // that fits both width and height available.
+                          double gridSize = min(constraints.maxWidth, constraints.maxHeight);
+                          
+                          return SizedBox(
+                            width: gridSize,
+                            height: gridSize,
+                            child: GridView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: const EdgeInsets.all(8), // Reduced padding slightly
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 6,
+                                mainAxisSpacing: 8, // Adjusted for tighter fit if needed
+                                crossAxisSpacing: 8,
+                                childAspectRatio: 1.0,
                               ),
-                            );
-                          },
-                        ),
+                              itemCount: 36,
+                              itemBuilder: (context, index) {
+                                final tile = _cells[index];
+                                return GestureDetector(
+                                  onTap: () => _handleCellClick(index),
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 300),
+                                    decoration: BoxDecoration(
+                                      color: tile.isHighlighted 
+                                          ? Colors.orangeAccent 
+                                          : Colors.blue.withOpacity(0.7),
+                                      borderRadius: BorderRadius.circular(8),
+                                      // Borderless design maintained per instructions
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
                   if (_showLevelUp)
-                  TweenAnimationBuilder(
-                    duration: const Duration(milliseconds: 400),
-                    tween: Tween<double>(begin: 0.0, end: 1.0),
-                    builder: (context, double value, child) {
-                      return Transform.scale(
-                        scale: value,
-                        child: Opacity(
-                          opacity: value,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text(
-                                "LEVEL UP!",
-                                style: TextStyle(
-                                  fontSize: 42,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.orange,
-                                  letterSpacing: 2,
+                    TweenAnimationBuilder(
+                      duration: const Duration(milliseconds: 400),
+                      tween: Tween<double>(begin: 0.0, end: 1.0),
+                      builder: (context, double value, child) {
+                        return Transform.scale(
+                          scale: value,
+                          child: Opacity(
+                            opacity: value,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Text(
+                                  "LEVEL UP!",
+                                  style: TextStyle(
+                                    fontSize: 42,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.orange,
+                                    letterSpacing: 2,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "Next: $_tilesCount Tiles",
-                                style: const TextStyle(
-                                  fontSize: 20, 
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue
+                                Text(
+                                  "Next: $_tilesCount Tiles",
+                                  style: const TextStyle(
+                                    fontSize: 20, 
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-             ],
+                        );
+                      },
+                    ),
+                ],
               ),
             ),
           ],
