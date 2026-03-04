@@ -1,7 +1,7 @@
-# Grids
+# Memory
 
-Solve the grids.
+Remember the highighted pattern and click on it during the given timeframe.
 
 ## Getting Started
 
-https://grids3413.web.app/
+https://memory341.web.app/

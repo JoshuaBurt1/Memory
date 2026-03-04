@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title: const Text("Install on iOS", style: TextStyle(color: Colors.blue)),
           content: const Text(
-            "To install GRIDS, tap the 'Share' icon in your Safari menu bar and select 'Add to Home Screen'.",
+            "To install MEMORY, tap the 'Share' icon in your Safari menu bar and select 'Add to Home Screen'.",
             style: TextStyle(height: 1.4),
           ),
           actions: [
@@ -273,7 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
-                  "GRIDS",
+                  "MEMORY",
                   style: TextStyle(
                     fontSize: 38,
                     fontWeight: FontWeight.w900,
@@ -423,7 +423,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "GRIDS",
+                        "MEMORY",
                         style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900, color: Colors.blue, letterSpacing: 2), // Slightly smaller title
                       ),
                       const SizedBox(height: 20), // Reduced spacing
