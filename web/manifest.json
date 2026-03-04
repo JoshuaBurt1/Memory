@@ -1,12 +1,12 @@
 {
-    "name": "GRIDS: Memory & Logic",
-    "short_name": "GRIDS",
-    "id": "grids_app_v1",
+    "name": "MEMORY GAME",
+    "short_name": "MEMORY",
+    "id": "memory_app_v1",
     "start_url": "index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#2196F3",
-    "description": "An orthogonal logic and memory challenge.",
+    "description": "An memory challenge.",
     "orientation": "portrait-primary",
     "categories": ["games", "education"],
     "prefer_related_applications": false,
@@ -55,7 +55,7 @@
             "src": "screenshots/mobile.png",
             "sizes": "1080x1920",
             "type": "image/png",
-            "label": "GRIDS Challenge"
+            "label": "MEMORY Challenge"
         }
     ]
 }

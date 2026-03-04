@@ -91,7 +91,7 @@ class _HighscoresScreenState extends State<HighscoresScreen> {
         children: [
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection('grids_highscores')
+                .collection('memory_highscores')
                 .orderBy('high_score', descending: true)
                 .snapshots(),
             builder: (context, snapshot) {

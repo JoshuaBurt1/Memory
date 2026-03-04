@@ -142,7 +142,7 @@ class _GameScreenState extends State<GameScreen> {
 
     try {
       final CollectionReference highScores = 
-          FirebaseFirestore.instance.collection('grids_highscores');
+          FirebaseFirestore.instance.collection('memory_highscores');
 
       // Attempt to add the score
       DocumentReference docRef = await highScores.add({
@@ -179,7 +179,7 @@ class _GameScreenState extends State<GameScreen> {
   Future<void> _distributeRewards(int playerScore) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
-    final collection = FirebaseFirestore.instance.collection('grids_highscores');
+    final collection = FirebaseFirestore.instance.collection('memory_highscores');
     
     // Aggregate queries are efficient and perfect for percentile math
     AggregateQuerySnapshot totalSnapshot = await collection.count().get();
